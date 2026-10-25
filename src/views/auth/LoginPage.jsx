@@ -35,7 +35,7 @@ export default function LoginPage() {
         navigate(dest);
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.warn('Login validation:', err?.message || err);
       const msg = err.message || 'Invalid email or password.';
       setError(msg);
       toast.error(msg);
@@ -112,7 +112,43 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-500">
+          <div className="mt-6 pt-5 border-t border-slate-200">
+            <p className="text-xs font-semibold text-slate-500 text-center mb-2.5">
+              Quick Demo Logins (Password: <span className="font-mono text-slate-700">demo1234</span>)
+            </p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <button
+                type="button"
+                onClick={() => { setEmail('buyer@demo.example'); setPassword('demo1234'); }}
+                className="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition text-center cursor-pointer border border-slate-200"
+              >
+                👤 Buyer (Importer)
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('exporter@demo.example'); setPassword('demo1234'); }}
+                className="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition text-center cursor-pointer border border-slate-200"
+              >
+                🚢 Exporter (Seller)
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('admin@demo.example'); setPassword('demo1234'); }}
+                className="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition text-center cursor-pointer border border-slate-200"
+              >
+                🛡️ Admin
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('logistics@demo.example'); setPassword('demo1234'); }}
+                className="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition text-center cursor-pointer border border-slate-200"
+              >
+                📦 Logistics
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-5 text-center text-xs text-slate-500">
             Don't have an enterprise account?{' '}
             <Link to="/register" className="font-bold text-blue-600 hover:text-blue-700">
               Register Company

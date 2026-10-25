@@ -39,19 +39,25 @@ export async function seedDemoData() {
     await conn.execute(
       `INSERT INTO users (uid, name, email, password_hash, role, company_id, company_name, country, status)
        VALUES ('exporter_demo_001', 'Rajesh Sharma', 'exporter@demo.example', ?, 'exporter', 'company_exporter_001', 'ABC Electronics India Ltd', 'India', 'active')
-       ON DUPLICATE KEY UPDATE name=VALUES(name)`,
+       ON DUPLICATE KEY UPDATE name=VALUES(name), password_hash=VALUES(password_hash), role=VALUES(role), status='active'`,
       [hash]
     );
     await conn.execute(
       `INSERT INTO users (uid, name, email, password_hash, role, company_id, company_name, country, status)
        VALUES ('buyer_demo_001', 'Dr. Klaus Becker', 'buyer@demo.example', ?, 'buyer', 'company_buyer_001', 'XYZ GmbH Germany', 'Germany', 'active')
-       ON DUPLICATE KEY UPDATE name=VALUES(name)`,
+       ON DUPLICATE KEY UPDATE name=VALUES(name), password_hash=VALUES(password_hash), role=VALUES(role), status='active'`,
       [hash]
     );
     await conn.execute(
       `INSERT INTO users (uid, name, email, password_hash, role, company_id, company_name, country, status)
        VALUES ('admin_demo_001', 'Master Compliance Officer', 'admin@demo.example', ?, 'admin', 'company_buyer_001', 'Foreign Trading System Admin', 'Singapore', 'active')
-       ON DUPLICATE KEY UPDATE name=VALUES(name)`,
+       ON DUPLICATE KEY UPDATE name=VALUES(name), password_hash=VALUES(password_hash), role=VALUES(role), status='active'`,
+      [hash]
+    );
+    await conn.execute(
+      `INSERT INTO users (uid, name, email, password_hash, role, company_id, company_name, country, status)
+       VALUES ('logistics_demo_001', 'Captain James Wilson', 'logistics@demo.example', ?, 'logistics', 'company_exporter_001', 'Pacific Orient Container Lines', 'Singapore', 'active')
+       ON DUPLICATE KEY UPDATE name=VALUES(name), password_hash=VALUES(password_hash), role=VALUES(role), status='active'`,
       [hash]
     );
     await conn.execute(
